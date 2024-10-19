@@ -25,7 +25,7 @@
 	</thead>
 	<tbody>
 		<%
-			List<Autor> listaAutores = (list<Autor>)reques.getAttribute("ListaAutores");
+		List<Autor> listaAutores = (List<Autor>) request.getAttribute("listaAutores");
 			if(listaAutores != null){
 				for(Autor autor : listaAutores){
 					%>
@@ -34,10 +34,18 @@
 						<td><%= autor.getNombre() %></td>
 				 		<td><%= autor.getNacionalidad() %></td>
 				 		<td></td>
-						
 					</tr>
 					<%
 				}
+			}else{
+				%>
+				<tr>
+					<td>No hay datos</td>
+					<td>No hay datos</td>
+			 		<td>No hay datos</td>
+			 		<td></td>
+				</tr>
+				<%
 			}
 		
 		%>
