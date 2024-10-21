@@ -10,11 +10,9 @@
 <meta charset="UTF-8">
 <title>PAGINA WEB</title>
 
-
-
 </head>
 <body>
-<table id="tabla">
+<table id="tabla" border="1">
 	<thead>
 		<tr>
 			<th>Codigo del Autor</th>
@@ -24,8 +22,8 @@
 		</tr>	
 	</thead>
 	<tbody>
-		<%
-		List<Autor> listaAutores = (List<Autor>) request.getAttribute("listaAutores");
+		<% //SE PUEDE USAR EN MAS DE UNA LINEA
+		List<Autor> listaAutores = (List<Autor>) request.getAttribute("ListaAutores");
 			if(listaAutores != null){
 				for(Autor autor : listaAutores){
 					%>
@@ -33,7 +31,7 @@
 						<td><%= autor.getIdAutor() %></td>
 						<td><%= autor.getNombre() %></td>
 				 		<td><%= autor.getNacionalidad() %></td>
-				 		<td></td>
+				 		
 					</tr>
 					<%
 				}
@@ -49,7 +47,7 @@
 			}
 		
 		%>
-	
+		
 	</tbody>
 	
 	

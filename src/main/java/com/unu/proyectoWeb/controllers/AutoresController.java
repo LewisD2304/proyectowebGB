@@ -28,7 +28,7 @@ public class AutoresController extends HttpServlet {
 		// TODO Auto-generated constructor stub
 	}
 
-	protected void proccessRequest(HttpServletRequest request, HttpServletResponse response)
+	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 
@@ -68,31 +68,32 @@ public class AutoresController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+
+		processRequest(request,response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		processRequest(request,response);
 	}
 	
 	private void listar(HttpServletRequest request, HttpServletResponse response) {
 		
 		try {
 			request.setAttribute("ListaAutores", modelo.listarAutores());
+
+			Iterator<Autor> it = modelo.listarAutores().iterator(); //Objeto tipo iterator
 			
-			Iterator<Autor> it = modelo.listarAutores().iterator();
 			while(it.hasNext()) {
 				Autor a = it.next();
 				System.out.println(a.getIdAutor()+" "+a.getNombre()+" "+a.getNacionalidad());
 			}
 				
-			request.getRequestDispatcher("/autores/listaAutores.jsp").forward(request, response);
+			request.getRequestDispatcher("/autores/ListaAutores.jsp").forward(request, response);
 		}catch(ServletException | IOException ex)  {
 			Logger.getLogger(AutoresController.class.getName()).log(Level.SEVERE, null, ex);
 		}
+
 	}
 
 }

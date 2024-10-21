@@ -5,11 +5,12 @@ public class Autor {
 	private String nacionalidad;
 	private String nombre;
 	
-	public Autor(int idAutor, String nacionalidad, String nombre) {
+	public Autor(int idAutor, String nombre, String nacionalidad) {
 		super();
 		this.idAutor = idAutor;
-		this.nacionalidad = nacionalidad;
 		this.nombre = nombre;
+		this.nacionalidad = nacionalidad;
+		
 	}
 
 	public Autor() {
