@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -44,23 +45,15 @@ public class AutoresController extends HttpServlet {
 		case "listar":
 			listar(request, response);
 			break;
-			
-			/*
-			 case "nuevo":
-				 request.getRequestDispatcher("/autores/nuevoAutor.jsp").forward(request, response);
-			 break;
-			 case "insertar":
-				 insertar(request, response);
-			 break;
-			 case "obtener":
-				 obtener(request, response);
-			 break;
-			 case "modificar":
-				 modificar(request, response);
-			 break;
-			 case "eliminar":
-				 eliminar(request, response);
-			 break;*/
+
+		/*
+		 * case "nuevo":
+		 * request.getRequestDispatcher("/autores/nuevoAutor.jsp").forward(request,
+		 * response); break; case "insertar": insertar(request, response); break; case
+		 * "obtener": obtener(request, response); break; case "modificar":
+		 * modificar(request, response); break; case "eliminar": eliminar(request,
+		 * response); break;
+		 */
 
 		}
 
@@ -69,29 +62,34 @@ public class AutoresController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		processRequest(request,response);
+			processRequest(request, response);
+
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		processRequest(request,response);
+		processRequest(request, response);
 	}
-	
+
 	private void listar(HttpServletRequest request, HttpServletResponse response) {
-		
+
 		try {
 			request.setAttribute("ListaAutores", modelo.listarAutores());
 
-			Iterator<Autor> it = modelo.listarAutores().iterator(); //Objeto tipo iterator
-			
-			while(it.hasNext()) {
+			Iterator<Autor> it = modelo.listarAutores().iterator(); // Objeto tipo iterator
+
+			while (it.hasNext()) {
 				Autor a = it.next();
-				System.out.println(a.getIdAutor()+" "+a.getNombre()+" "+a.getNacionalidad());
+				System.out.println(a.getIdAutor() + " " + a.getNombre() + " " + a.getNacionalidad());
 			}
-				
+
 			request.getRequestDispatcher("/autores/ListaAutores.jsp").forward(request, response);
-		}catch(ServletException | IOException ex)  {
+		} catch (ServletException | IOException ex) {
 			Logger.getLogger(AutoresController.class.getName()).log(Level.SEVERE, null, ex);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 	}

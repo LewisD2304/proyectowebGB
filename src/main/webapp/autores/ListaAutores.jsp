@@ -31,7 +31,7 @@
 						<td><%= autor.getIdAutor() %></td>
 						<td><%= autor.getNombre() %></td>
 				 		<td><%= autor.getNacionalidad() %></td>
-				 		
+				 		<td></td>
 					</tr>
 					<%
 				}
