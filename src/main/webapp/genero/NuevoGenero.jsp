@@ -25,22 +25,22 @@
 	//con el ? referencia a enviar un parametro
 	%>
 	<div class="mb-3" >
-		<h3>Nuevo Autor</h3>
-		<form role="form" action="<%=url%>AutoresController" method="POST">
+		<h3>Nuevo Genero</h3>
+		<form role="form" action="<%=url%>GeneroController" method="POST">
 			<input type="hidden" name="op" value="insertar"> <label
-				for="nombre">Nombre del autor: </label> <input type="text"
+				for="nombre">Nombre del genero: </label> <input type="text"
 				class="form-control" name="nombre" id="nombre" value=""
-				placeholder="Ingresa el nombre del autor"> <span
+				placeholder="Ingresa el nombre del Genero"> <span
 				class="input-group-addon"><span
 				class="glyphicon glyphicon-asterisk"></span></span>
 
 
 			<div class="form-group">
-				<label for="contacto">Nacionalidad del autor: </label>
+				<label for="descripcion">Descripcion: </label>
 				<div class="input-group">
-					<input type="text" class="form-control" id="contacto" value=""
-						name="nacionalidad"
-						placeholder="Ingresa la nacionalidad del autor"> <span
+					<input type="text" class="form-control" id="descripcion" value=""
+						name="descripcion"
+						placeholder="Ingresa descripcion"> <span
 						class="input-group-addon"><span
 						class="glyphicon glyphicon-asterisk"></span></span>
 				</div>
@@ -48,7 +48,7 @@
 
 			<input type="submit" class="btn btn-info" value="Guardar"
 				name="Guardar"> <a class="btn btn-danger"
-				href="<%=url%>AutoresController?op=listar">Cancelar</a>
+				href="<%=url%>GeneroController?op=listar">Cancelar</a>
 		</form>
 	</div>
 

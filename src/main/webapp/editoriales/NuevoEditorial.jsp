@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,22 +25,33 @@
 	//con el ? referencia a enviar un parametro
 	%>
 	<div class="mb-3" >
-		<h3>Nuevo Autor</h3>
-		<form role="form" action="<%=url%>AutoresController" method="POST">
-			<input type="hidden" name="op" value="insertar"> <label
-				for="nombre">Nombre del autor: </label> <input type="text"
+		<h3>Nuevo Editorial</h3>
+		<form role="form" action="<%=url%>EditorialController" method="POST">
+			<input type="hidden" name="op" value="insertarEdit"> <label
+				for="nombre">Nombre de Editorial: </label> <input type="text"
 				class="form-control" name="nombre" id="nombre" value=""
-				placeholder="Ingresa el nombre del autor"> <span
+				placeholder="Ingresa el nombre de editorial"> <span
 				class="input-group-addon"><span
 				class="glyphicon glyphicon-asterisk"></span></span>
 
 
 			<div class="form-group">
-				<label for="contacto">Nacionalidad del autor: </label>
+				<label for="contacto">Contacto: </label>
 				<div class="input-group">
 					<input type="text" class="form-control" id="contacto" value=""
-						name="nacionalidad"
-						placeholder="Ingresa la nacionalidad del autor"> <span
+						name="contacto"
+						placeholder="Ingresa el contacto"> <span
+						class="input-group-addon"><span
+						class="glyphicon glyphicon-asterisk"></span></span>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="contacto">Telefono: </label>
+				<div class="input-group">
+					<input type="text" class="form-control" id="telefono" value=""
+						name="telefono"
+						placeholder="Ingresa la telefono"> <span
 						class="input-group-addon"><span
 						class="glyphicon glyphicon-asterisk"></span></span>
 				</div>
@@ -48,10 +59,9 @@
 
 			<input type="submit" class="btn btn-info" value="Guardar"
 				name="Guardar"> <a class="btn btn-danger"
-				href="<%=url%>AutoresController?op=listar">Cancelar</a>
+				href="<%=url%>EditorialController?op=listarEdit">Cancelar</a>
 		</form>
 	</div>
-
-
+	
 </body>
 </html>

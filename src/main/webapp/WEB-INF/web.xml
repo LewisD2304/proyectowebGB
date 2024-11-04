@@ -29,4 +29,24 @@
     <servlet-name>EditorialController</servlet-name>
     <url-pattern>/EditorialController</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ASASASAS</display-name>
+    <servlet-name>ASASASAS</servlet-name>
+    <servlet-class>com.unu.proyectoWeb.controllers.ASASASAS</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ASASASAS</servlet-name>
+    <url-pattern>/ASASASAS</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LibroController</display-name>
+    <servlet-name>LibroController</servlet-name>
+    <servlet-class>com.unu.proyectoWeb.controllers.LibroController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LibroController</servlet-name>
+    <url-pattern>/LibroController</url-pattern>
+  </servlet-mapping>
 </web-app>

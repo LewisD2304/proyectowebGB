@@ -1,41 +1,38 @@
 package com.unu.proyectoWeb.controllers;
 
 import jakarta.servlet.ServletException;
-
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.Iterator;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.apache.jasper.tagplugins.jstl.core.ForEach;
+
 import com.unu.proyectoWeb.beans.Autor;
-import com.unu.proyectoWeb.models.*;
+import com.unu.proyectoWeb.beans.Libro;
+import com.unu.proyectoWeb.models.LibroModel;
 
 /**
- * Servlet implementation class AutoresController
+ * Servlet implementation class LibroController
  */
-public class AutoresController extends HttpServlet {
+public class LibroController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	AutoresModel modelo = new AutoresModel();
-
-	public AutoresController() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+       
+	LibroModel modelo = new LibroModel();
+    
+    public LibroController() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+    
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
-		/*
-		 * try (PrintWriter out = response.getWriter()) { if (request.getParameter("op")
-		 * == null) { listar(request, response); return; } }
-		 */
+	
 		String operacion = request.getParameter("op");
 
 		if (operacion == null) {
@@ -48,8 +45,8 @@ public class AutoresController extends HttpServlet {
 			listar(request, response);
 			break;
 		case "agregar":
-			request.getRequestDispatcher("/autores/NuevoAutor.jsp").forward(request, response);
-			break;
+			request.getRequestDispatcher("/libro/NuevoLibro.jsp").forward(request, response);
+			break;/*
 		case "insertar":
 			insertar(request, response);
 			break;
@@ -62,36 +59,38 @@ public class AutoresController extends HttpServlet {
 		case "eliminar":
 			eliminar(request, response);
 			break;
-
+*/
 		}
 
 	}
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
-		processRequest(request, response);
-
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		processRequest(request, response);
 	}
 
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		processRequest(request, response);
+	}
+	
 	private void listar(HttpServletRequest request, HttpServletResponse response) {
 
 		try {
-			request.setAttribute("ListaAutores", modelo.listarAutores());
+			request.setAttribute("ListaLibro", modelo.listaLibro());
 
-			Iterator<Autor> it = modelo.listarAutores().iterator(); // Objeto tipo iterator
+			Iterator<Libro> it = modelo.listaLibro().iterator(); // Objeto tipo iterator
+			
+			List<Libro> libros = modelo.listaLibro();
+			 System.out.println("Tamaño de la lista de libros: " + libros.size());
 
 			while (it.hasNext()) {
-				Autor a = it.next();
-				System.out.println(a.getIdAutor() + " " + a.getNombre() + " " + a.getNacionalidad());
+				Libro a = it.next();
+				System.out.println(a.getIdlibro() + " " + a.getNombre() + " " + a.getExistencias()+ " " + a.getPrecio()+ " " + a.getAutor()+ " " + a.getEditorial()+ " " + a.getGenero());
 			}
 
-			request.getRequestDispatcher("/autores/ListaAutores.jsp").forward(request, response);
+			request.getRequestDispatcher("/libro/ListaLibro.jsp").forward(request, response);
 		} catch (ServletException | IOException ex) {
 			Logger.getLogger(AutoresController.class.getName()).log(Level.SEVERE, null, ex);
 		} catch (SQLException e) {
@@ -100,7 +99,7 @@ public class AutoresController extends HttpServlet {
 		}
 
 	}
-
+/*
 	private void insertar(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			Autor miAutor = new Autor();
@@ -174,4 +173,5 @@ public class AutoresController extends HttpServlet {
 			e.getStackTrace();
 		}
 	}
+*/
 }

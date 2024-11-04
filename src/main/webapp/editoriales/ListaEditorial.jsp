@@ -2,16 +2,12 @@
 	pageEncoding="UTF-8"%>
 
 <%@ page import="java.util.List"%>
-<%@ page import="com.unu.proyectoWeb.beans.Autor"%>
-
+<%@ page import="com.unu.proyectoWeb.beans.Editorial"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-
-
-<title>PAGINA WEB</title>
-
+<title>Insert title here</title>
 
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
@@ -23,24 +19,24 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
 	crossorigin="anonymous"></script>
-
-<script>
-function eliminar(id){
-	if(confirm("¿Desea eliminar el registro?") == true){
-		location.href = "AutoresController?op=eliminar&id="+id;
+	
+	
+	<script>
+	function eliminarEdit(id){
+		if(confirm("¿Desea eliminar el registro?") == true){
+			location.href = "EditorialController?op=eliminarEdit&id="+id;
+		}
 	}
-}
 
 </script>
 
 </head>
 <body>
-
 	<%
 	String url = "http://localhost:8080/proyectoWeb/";
 	//con el ? referencia a enviar un parametro
 	%>
-	
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -62,19 +58,17 @@ function eliminar(id){
     
   </div>
 </nav>
-	
-<div class="d-flex justify-content-end mb-3">
-  <p class="d-inline-flex gap-1">
-    <a class="btn btn-primary" role="button" aria-expanded="false" type="button" href="<%=url%>AutoresController?op=agregar">
-      Añadir Autor
-    </a>
-    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill text-bg-secondary">+99
-      <span class="visually-hidden">unread messages</span>
-    </span>
-  </p>
-</div>
 
- 
+	<div class="d-flex justify-content-end mb-3">
+		<p class="d-inline-flex gap-1">
+			<a class="btn btn-primary" role="button" aria-expanded="false"
+				type="button" href="<%=url%>EditorialController?op=agregarEdit">
+				Añadir Editorial </a> <span
+				class="position-absolute top-0 start-100 translate-middle badge rounded-pill text-bg-secondary">+99
+				<span class="visually-hidden">unread messages</span>
+			</span>
+		</p>
+	</div>
 
 	<div class="container">
 
@@ -82,31 +76,35 @@ function eliminar(id){
 		<table class="table table-striped">
 			<thead class="table">
 				<tr>
-					<th>Codigo del autor</th>
-					<th>Nombre del autor</th>
-					<th>Nacionalidad</th>
+					<th>Codigo de Editorial</th>
+					<th>Nombre de EDitorial</th>
+					<th>contacto</th>
+					<th>Telefono</th>
 					<th>Operaciones</th>
 				</tr>
 			</thead>
 			<tbody>
 				<%
-				List<Autor> listaAutores = (List<Autor>) request.getAttribute("ListaAutores");
+				//List<Editorial> listaEdt = (List<Editorial>) request.getAttribute("ListaEditorial");
+				List<Editorial> listaEdt = (List<Editorial>) request.getAttribute("ListaEditorial");
 
 				// Verificar si la lista no es nula
-				if (listaAutores != null) {
-					for (Autor autor : listaAutores) {
+				if (listaEdt != null) {
+					for (Editorial editorial : listaEdt) {
 				%>
 				<tr>
-					<td><%=autor.getIdAutor()%></td>
-					<td><%=autor.getNombre()%></td>
-					<td><%=autor.getNacionalidad()%></td>
-					<td><a
-						href="<%=url%>AutoresController?op=obtener&id=<%=autor.getIdAutor()%>"
-						class="btn btn-secondary">Modificar</a> <!-- 
+					<td><%=editorial.getIdEditorial()%></td>
+					<td><%=editorial.getNombre()%></td>
+					<td><%=editorial.getContacto()%></td>
+					<td><%=editorial.getTelefono()%></td>
+					<td>
+						
 						<a
-						href="<%=url%>AutoresController?op=eliminar&id=<%=autor.getIdAutor()%>">Eliminar</a>
-					 --> <a href="javascript:eliminar('<%=autor.getIdAutor()%>')"
+						href="<%=url%>EditorialController?op=obtenerEdit&id=<%=editorial.getIdEditorial()%>"
+						class="btn btn-secondary">Modificar</a> 
+						<a href="javascript:eliminarEdit('<%=editorial.getIdEditorial()%>')"
 						class="btn btn-danger">Eliminar</a></td>
+					
 
 				</tr>
 				<%
@@ -115,6 +113,7 @@ function eliminar(id){
 				%>
 
 				<tr>
+					<td>No hay datos</td>
 					<td>No hay datos</td>
 					<td>No hay datos</td>
 					<td>No hay datos</td>
@@ -130,7 +129,6 @@ function eliminar(id){
 		</table>
 
 	</div>
-
 
 </body>
 </html>

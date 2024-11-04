@@ -26,35 +26,35 @@
 	//AÑADIR UN BOTON	
 	String url = "http://localhost:8080/proyectoWeb/";
 	//con el ? referencia a enviar un parametro
-	Autor autor;
+	Genero genero;
 
-	if (request.getAttribute("autor") == null) {
-		autor = new Autor();
+	if (request.getAttribute("genero") == null) {
+		genero = new Genero();
 	} else {
-		autor = (Autor) request.getAttribute("autor");
-		System.out.println(autor.getIdAutor());
-		System.out.println(autor.getNombre());
-		System.out.println(autor.getNacionalidad());
+		genero = (Genero) request.getAttribute("genero");
+		System.out.println(genero.getIdGenero());
+		System.out.println(genero.getNombre());
+		System.out.println(genero.getDescripcion());
 
 	}
 	%>
 	<div class="mb-3">
-		<form role="form" action="<%=url%>AutoresController" method="POST">
+		<form role="form" action="<%=url%>GeneroController" method="POST">
 
 			<input type="hidden" class="form-control" name="op" value="modificar">
-			<input type="hidden" name="id" value="<%=autor.getIdAutor()%>" />
+			<input type="hidden" name="id" value="<%=genero.getIdGenero()%>" />
 	</div>
-	<h1>REGISTRO DE AUTOR</h1>
+	<h1>MODIFICAR GENERO</h1>
 	<div class="mb-3">
-		<label class="form-label" for="nombre">Nombre del autor: </label> <br> <input
-			type="text" class="form-control" name="nombre" id="nombre" aria-describedby="nombre" value="<%=autor.getNombre()%>" /><br>
+		<label class="form-label" for="nombre">Nombre del Genero: </label> <br> <input
+			type="text" class="form-control" name="nombre" id="nombre" aria-describedby="nombre" value="<%=genero.getNombre()%>" /><br>
 	</div>
 	<div class="mb-3">
-		<label class="form-label" for="nacionalidad">Nacionalidad del autor: </label> <br> <input
-			class="form-control" type="text" name="nacionalidad" id="nacionalidad" aria-describedby="nacionalidad"
-			value="<%=autor.getNacionalidad()%>" /> <br> <input
+		<label class="form-label" for="descripcion">Descripcion: </label> <br> <input
+			class="form-control" type="text" name="descripcion" id="descripcion" aria-describedby="descripcion"
+			value="<%=genero.getDescripcion()%>" /> <br> <input
 			type="submit" class="btn btn-info" value="Guardar" name="Guardar">
-		<a class="btn btn-danger" href="<%=url%>AutoresController?op=listar">Cancelar</a>
+		<a class="btn btn-danger" href="<%=url%>GeneroController?op=listar">Cancelar</a>
 		</form>
 	</div>
 

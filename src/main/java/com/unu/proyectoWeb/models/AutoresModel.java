@@ -28,13 +28,14 @@ public class AutoresModel extends Conexion {
 				autor.setNombre(rs.getString("nombre"));
 				autor.setNacionalidad(rs.getString("nacionalidad"));
 				lista.add(autor);
+				
 			}
 			this.cerrarConexion();
 			return lista;
 		} catch (SQLException ex) {
 			Logger.getLogger(AutoresModel.class.getName()).log(Level.SEVERE, null, ex);
 			this.cerrarConexion();
-			;
+			
 			return null;
 
 		}

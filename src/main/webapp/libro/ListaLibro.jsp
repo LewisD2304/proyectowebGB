@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <%@ page import="java.util.List"%>
-<%@ page import="com.unu.proyectoWeb.beans.Autor"%>
+<%@ page import="com.unu.proyectoWeb.beans.*"%>
 
 <!DOCTYPE html>
 <html>
@@ -27,7 +27,7 @@
 <script>
 function eliminar(id){
 	if(confirm("¿Desea eliminar el registro?") == true){
-		location.href = "AutoresController?op=eliminar&id="+id;
+		location.href = "LibroController?op=eliminar&id="+id;
 	}
 }
 
@@ -65,12 +65,9 @@ function eliminar(id){
 	
 <div class="d-flex justify-content-end mb-3">
   <p class="d-inline-flex gap-1">
-    <a class="btn btn-primary" role="button" aria-expanded="false" type="button" href="<%=url%>AutoresController?op=agregar">
-      Añadir Autor
+    <a class="btn btn-primary" role="button" aria-expanded="false" type="button" href="<%=url%>LibroController?op=agregar">
+      Añadir Libro
     </a>
-    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill text-bg-secondary">+99
-      <span class="visually-hidden">unread messages</span>
-    </span>
   </p>
 </div>
 
@@ -82,30 +79,38 @@ function eliminar(id){
 		<table class="table table-striped">
 			<thead class="table">
 				<tr>
-					<th>Codigo del autor</th>
-					<th>Nombre del autor</th>
-					<th>Nacionalidad</th>
+					<th>Codigo del Libro</th>
+					<th>Nombre del Libro</th>
+					<th>Existencia</th>
+					<th>Precio</th>
+					<th>Autor</th>
+					<th>Editorial</th>
+					<th>Genero</th>
 					<th>Operaciones</th>
 				</tr>
 			</thead>
 			<tbody>
 				<%
-				List<Autor> listaAutores = (List<Autor>) request.getAttribute("ListaAutores");
+				List<Libro> listaLibro = (List<Libro>) request.getAttribute("ListaLibro");
 
 				// Verificar si la lista no es nula
-				if (listaAutores != null) {
-					for (Autor autor : listaAutores) {
+				if (listaLibro != null) {
+					for (Libro libro : listaLibro) {
 				%>
 				<tr>
-					<td><%=autor.getIdAutor()%></td>
-					<td><%=autor.getNombre()%></td>
-					<td><%=autor.getNacionalidad()%></td>
+					<td><%=libro.getIdlibro()%></td>
+					<td><%=libro.getNombre()%></td>
+					<td><%=libro.getExistencias()%></td>
+					<td><%=libro.getPrecio()%></td>
+					<td><%=libro.getAutor()%></td>
+					<td><%=libro.getEditorial()%></td>
+					<td><%=libro.getGenero()%></td>
 					<td><a
-						href="<%=url%>AutoresController?op=obtener&id=<%=autor.getIdAutor()%>"
+						href="<%=url%>LibroController?op=obtener&id=<%=libro.getIdlibro()%>"
 						class="btn btn-secondary">Modificar</a> <!-- 
 						<a
-						href="<%=url%>AutoresController?op=eliminar&id=<%=autor.getIdAutor()%>">Eliminar</a>
-					 --> <a href="javascript:eliminar('<%=autor.getIdAutor()%>')"
+						href="<%=url%>AutoresController?op=eliminar&id=<%=libro.getIdlibro()%>">Eliminar</a>
+					 --> <a href="javascript:eliminar('<%=libro.getIdlibro()%>')"
 						class="btn btn-danger">Eliminar</a></td>
 
 				</tr>
